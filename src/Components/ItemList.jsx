@@ -1,10 +1,11 @@
 import React from "react";
-
-const ItemList =({ListProducts}) => {
+import { productos } from "../productos";
+import Item from "./Item";
+const ItemList =({listProducts}) => {
 
 return(
-    <div>
-        {ListProducts.map(productos => <item key={productos.id} productos={productos}  /> )}
+    <div className="d-flex flex-wrap  rounded ">
+        {listProducts.map(productos => <Item key={productos.id} productos={productos}  /> )}
     </div>
 )
 }
