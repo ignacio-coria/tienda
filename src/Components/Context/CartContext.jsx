@@ -9,19 +9,19 @@ const CartContextProvider = ({children}) => {
         return cart.some(x => x.id === id);
     }
 
-    const addItem = (item, quantity) => {
+    const addProductos = (productos, quantity) => {
         if (isInCart(item.id)) {
             let pos = cart.findIndex(x => x.id === item.id);
             cart[pos].quantity += quantity;
             setCart([...cart]);
         } else {
-            setCart([...cart, {...item, quantity:quantity}]);
+            setCart([...cart, {...productos, quantity:quantity}]);
         }
     }
 
-    const removeItem = (id) => {
-        const products = cart.filter(x => x.id !== id);
-        setCart([...products]);
+    const removeProductos = (id) => {
+        const productos = cart.filter(x => x.id !== id);
+        setCart([...productos]);
     }
 
     const clear = () => {
@@ -37,7 +37,7 @@ const CartContextProvider = ({children}) => {
     }
 
     return (
-        <CartContext.Provider value={{cart, addItem, removeItem, clear, cartTotal, sumTotal}}>
+        <CartContext.Provider value={{cart, addProductos, removeProductos, clear, cartTotal, sumTotal}}>
             {children}
         </CartContext.Provider>
     )

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { CartContext } from "./context/CartContext";
 import ItemContador from "./ItemContador";
 
-const ItemDetalle = ({item}) => {
+const ItemDetalle = ({productos}) => {
     const {addItem} = useContext(CartContext);
     const [itemStock, setItemStock] = useState(0);
 
@@ -12,7 +12,7 @@ const ItemDetalle = ({item}) => {
     }
 
     useEffect(() => {
-        setItemStock(item.stock);
+        setItemStock(productos.stock);
     }, [item]);
 
 return(

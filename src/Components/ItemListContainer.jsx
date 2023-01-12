@@ -9,8 +9,8 @@ const ItemListContainer = () => {
     const {id} = useParams();
 
     useEffect(() => {
-        const itemsCollection = collection(db, "items");
-        const q = id ? query(itemsCollection, where("categoria", "==", id)) : itemsCollection;
+        const itemsCollection = collection(db, "productos");
+        const q = id ? query(itemsCollection, where("category", "==", id)) : itemsCollection;
         
         getDocs(q).then((productos) => {
             setProductos(productos.docs.map((doc) => ({id:doc.id, ...doc.data()})
@@ -20,9 +20,13 @@ const ItemListContainer = () => {
     
     return (
         <div className="container">
-            {<ItemList productos={productos} />}
+            <div className="row">
+                <div className="col-md-12 d-flex align-items-center justify-content-end ">
+                    {<ItemList productos={productos} />}
+                </div> 
+            </div>
         </div>
-    )
+        )
 }
 
 export default ItemListContainer;
