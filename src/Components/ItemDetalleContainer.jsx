@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
+import db from "../firebase";
 
 
 const ItemDetalleContainer = () => {
@@ -15,7 +16,7 @@ const ItemDetalleContainer = () => {
                 if (snapShot.exists()) {
                     setItems({id:snapShot.id, ...snapShot.data()});
                 } else {
-                    console.log("El Producto No Existe!");
+                    console.log("no hay stock!");
                 }
             });
         }, [id]);

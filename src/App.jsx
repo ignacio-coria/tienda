@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import CartContextProvider from "./Components/Context/cartContext";
 import Error404 from "./Components/Error404";
 import Header from "./Components/Header";
 import ItemContador from "./Components/ItemContador";
@@ -8,6 +9,7 @@ import ItemListContainer from "./Components/ItemListContainer";
 
 function App() {
   return (
+    <CartContextProvider>
     <BrowserRouter>
       <Header />
       <Routes>
@@ -17,6 +19,7 @@ function App() {
       <Route path={"*"} element={<Error404 />}/>
       </Routes>
     </BrowserRouter>
+    </CartContextProvider>
   );
 }
 
