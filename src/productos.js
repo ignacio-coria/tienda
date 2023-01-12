@@ -8,5 +8,5 @@ export const productos =
 {"nombre":"daredevil", "precio":1300, "img":"../../public/image/daredevil.jpg", "id":6 , "stock":10, "initial":1,"category":"marvel", "descripcion":"Comic de Xmen numero 273"},
 {"nombre":"xmen", "precio":750, "img":"../../public/image/xmen.jpg", "id":7 , "stock":10, "initial":1,"category":"marvel", "descripcion":"Especial Must Have: DareDevil Born Again"},
 {"nombre":"flash", "precio":1100, "img":"../../public/image/flash.jpg", "id":8 , "stock":10, "initial":1,"category":"dc", "descripcion":"Comic de flash numero 300"},
-{"nombre":"nemesis", "precio":2000, "img":"../../public/image/nemesis.jpg", "id":9 , "stock":10, "initial":1,"category":"otros", "descripcion":"comcic de Nemesis Completo" }
+{"nombre":"nemesis", "precio":2000, "img":"../../public/image/nemesis.jpg", "id":9 , "stock":10, "initial":1,"category":"otros", "descripcion":"Comic de Nemesis Completo" }
 ]
