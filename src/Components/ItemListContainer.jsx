@@ -1,22 +1,27 @@
-import React, { useEffect, useState  } from "react"
-import { customFetch } from "../json/customFetch"
-import ItemList from "./ItemList"
-import { productos } from "../productos"
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ItemList from "./ItemList";
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 
-const ItemListContainer = ({greeting} ) =>{
+const ItemListContainer = () => {
+    const [items, setItems] = useState([]);
+    const {id} = useParams();
 
-const [listProducts, setlistProducts] = useState([]) 
-
-useEffect(()=>{
-        customFetch(productos)
-            .then(res => {setlistProducts(res)})
-    }, [])
-
-    return(
-        <div>
-            <ItemList listProducts={listProducts} />
+    useEffect(() => {
+        const db = getFirestore();
+        const itemsCollection = collection(db, "items");
+        const q = id ? query(itemsCollection, where("categoria", "==", id)) : itemsCollection;
+        
+        getDocs(q).then((comics) => {
+            setItems(comics.docs.map((doc) => ({id:doc.id, ...doc.data()})
+            ));
+        });
+    }, [id]);
+    
+    return (
+        <div className="container">
+            {<ItemList items={items} />}
         </div>
-
     )
 }
 

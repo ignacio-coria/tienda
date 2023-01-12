@@ -1,22 +1,30 @@
-import React from "react"; 
-import { customFetch } from "../json/customFetch";
-import ItemDetalle from "./ItemDetalle";
-import { productos } from "../productos";
+import React, { useEffect, useState } from "react";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { useParams } from "react-router-dom";
+import ItemList from "./ItemList";
 
 
 const ItemDetalleContainer = () => {
-    const [Item, setItem] = useState([]) 
+        const [items, setItems] = useState([]);
+        const {id} = useParams();
+    
+        useEffect(() => {
+            const db = getFirestore();
+            const item = doc(db, "productos", id);
+            getDoc(item).then((snapShot) => {
+                if (snapShot.exists()) {
+                    setItems({id:snapShot.id, ...snapShot.data()});
+                } else {
+                    console.log("El Producto No Existe!");
+                }
+            });
+        }, [id]);
 
-    useEffect(()=>{
-            customFetch(productos.descripcion)
-                .then(res => {setItem(res)})
-        }, [])
+        return (
+            <div className="container">
+                {<ItemList items={items} />}
+            </div>
+        )
 
-        return(
-
-    <div>
-<ItemDetalle Item={Item}/>
-</div>
-)
 }
 export default ItemDetalleContainer;

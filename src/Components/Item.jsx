@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Item = ({productos}) =>{
 
+const Item = ({productos}) =>{
 
     return(
     <div className=" card border border-5 rounded" style={{width: "15rem"}}>
