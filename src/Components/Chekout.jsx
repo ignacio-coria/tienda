@@ -9,13 +9,12 @@ const Checkout = () => {
     const [nombre, setNombre] = useState("");
     const [telefono, setTelefono] = useState("");
     const [email, setEmail] = useState("");
-    const [orderId, setOrderId] = useState("");
 
     const generarOrden = () => {
         const fecha = new Date();
         const order = {
             buyer: {name:nombre, phone:telefono, email:email},
-            items: cart.map(item => ({id:productos.id, title:productos.nombre, quantity:productos.quantity, price:productos.precio, price_total:productos.quantity * productos.precio})),
+            items: cart.map(productos=> ({id:productos.id, title:productos.nombre, quantity:productos.quantity, price:productos.precio, price_total:productos.quantity * productos.precio})),
             total: sumTotal(),
             order_date: `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()} ${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`
         };
@@ -26,10 +25,10 @@ const Checkout = () => {
             setOrderId(snapShot.id);
             const batch = writeBatch(db);
 
-            cart.forEach(item => {
-                let producto = doc(db, "items", item.id);
-                getDoc(producto).then((snapShot) => {
-                    batch.update(producto, {stock:snapShot.data().stock - item.quantity});
+            cart.forEach(productos => {
+                let producto = doc(db, "productos", productos.id);
+                getDoc(productos).then((snapShot) => {
+                    batch.update(productos, {stock:snapShot.data().stock - productos.quantity});
                 });
             });
             
@@ -61,12 +60,12 @@ const Checkout = () => {
                 <div className="col-md-6">
                     <table className="table">                                
                         <tbody>
-                            {cart.map(item => (
-                                <tr key={item.id}>
-                                    <td><img src={item.imagen} alt={item.nombre} width={80} /></td>
-                                    <td className="align-middle">{item.nombre}</td>
-                                    <td className="align-middle text-end">{item.quantity}</td>
-                                    <td className="align-middle text-end">${item.quantity * item.precio}</td>
+                            {cart.map(productos => (
+                                <tr key={productos.id}>
+                                    <td><img src={productos.img} alt={productos.nombre} width={80} /></td>
+                                    <td className="align-middle">{productos.nombre}</td>
+                                    <td className="align-middle text-end">{productos.quantity}</td>
+                                    <td className="align-middle text-end">${productos.quantity * productos.precio}</td>
                                 </tr>
                                 ))
                             }
@@ -77,11 +76,6 @@ const Checkout = () => {
                             </tr>
                         </tbody>
                     </table>    
-                </div>
-            </div>
-            <div className="row">
-                <div className="col text-center">
-                    {orderId !== "" ? <Navigate to={"/thankyou/" + orderId} /> : ""}
                 </div>
             </div>
         </div>
