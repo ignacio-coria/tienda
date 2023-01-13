@@ -5,7 +5,8 @@ import { CartContext } from "./Context/cartContext";
 
 const BotonCarrito = () =>{
     return(
-        <div><Link to={"/cart"}
+        <div>
+            <Link to={"/cart"}
             className="btn btn-success position-relative">
                 <img src="image/bag.svg" alt="carrito" width="32" />
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">

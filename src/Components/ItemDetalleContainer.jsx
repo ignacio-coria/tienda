@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useParams } from "react-router-dom";
-import ItemList from "./ItemList";
-
+import ItemDetalle from "./ItemDetalle"
 
 
 const ItemDetalleContainer = () => {
-        const [productos, setProductos] = useState([]);
+        const [productos, setProductos] = useState();
         const {id} = useParams();
     
         useEffect(() => {
@@ -25,7 +24,7 @@ const ItemDetalleContainer = () => {
             <div className="container">
                     <div className="row">
                         <div className="col-md-6 d-flex align-items-center justify-content-end ">
-                {<ItemList productos={productos} />}
+                        {productos && <ItemDetalle productos={productos} />}
                         </div>
                     </div>
             </div>
