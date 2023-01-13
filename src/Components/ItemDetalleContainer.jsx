@@ -12,14 +12,11 @@ const ItemDetalleContainer = () => {
             const db = getFirestore();
             const productos = doc(db, "productos", id);
             getDoc(productos).then((snapShot) => {
-                if (snapShot.exists()) {
-                    setProductos({id:snapShot.id, ...snapShot.data()});
-                } else {
-                    console.log("no hay stock!");
-                }
+				console.log("snapShot: ",snapShot)
+				setProductos({id:snapShot.id, ...snapShot.data()});
             });
-        }, [id]);
-
+        }, [id])
+        
         return (
             <div className="container">
                     <div className="row">

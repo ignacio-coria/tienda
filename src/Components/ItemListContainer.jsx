@@ -13,15 +13,15 @@ const ItemListContainer = () => {
         const q = id ? query(itemsCollection, where("category", "==", id)) : itemsCollection;
         
         getDocs(q).then((productos) => {
-            setProductos(productos.docs.map((doc) => ({id:doc.id, ...doc.data()})
+            setProductos(productos.docs.map((doc) => ({...doc.data(),id:doc.id})
             ));
         });
     }, [id]);
     
     return (
         <div className="container">
-            <div className="row">
-                <div className="col-md-12 d-flex align-items-center justify-content-end ">
+            <div className="row ">
+                <div className="col-md-12  d-flex align-items-center justify-content-end">
                     {<ItemList productos={productos} />}
                 </div> 
             </div>

@@ -29,7 +29,7 @@ const Header = () => {
                         </div>
                     </nav>
                 </div>
-                <div className="col-md-6 d-flex align-items-center justify-content-end">
+                <div className="col-md-6 d-flex align-items-center justify-content-end ">
                     <CartWidget />
                 </div>
             </div>

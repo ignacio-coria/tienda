@@ -3,17 +3,17 @@ import { CartContext } from "./context/CartContext";
 import ItemContador from "./ItemContador";
 
 const ItemDetalle = ({productos}) => {
-    const {addItem} = useContext(CartContext);
-    const [itemStock, setItemStock] = useState(0);
+    const {addProductos} = useContext(CartContext);
+    const [productosStock, setProductosStock] = useState(0);
 
     const onAdd = (quantity) => {
-        setItemStock(itemStock - quantity);
-        addItem(item, quantity);
+        setProductosStock(productosStock - quantity);
+        addProductos(productos, quantity);
     }
 
     useEffect(() => {
         setItemStock(productos.stock);
-    }, [item]);
+    }, [productos]);
 
 return(
 <div className="row">

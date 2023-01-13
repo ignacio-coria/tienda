@@ -6,7 +6,7 @@ const Item = ({productos}) =>{
 
     return(
         
-        <div className=" card border border-5 rounded border-dark  " style={{width: "15rem"}}>
+        <div className=" card  " style={{width: "15rem"}}>
             <Link to={"/item/" + productos.id}>
                 <img src= {productos.img} className="card-img-top" alt={productos.nombre} />
                 <div className="card-body">
